@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block page %}
+    <h1>Page accueil</h1>
+    <p><a href="{% url 'logout' %}">Se déconnecter </a></p>
+    <p><a href="{% url 'creation_ticket' %}">Créer un ticket</a></p>
+
+    {% for ticket in tickets %}
+        <div>
+            <h2>{{ ticket.title }}</h2>
+            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+        </div>
+    {% endfor %}
+{% endblock %}
