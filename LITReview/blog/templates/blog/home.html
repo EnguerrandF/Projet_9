@@ -6,11 +6,40 @@
     <h1>Page accueil</h1>
     <p><a href="{% url 'logout' %}">Se déconnecter </a></p>
     <p><a href="{% url 'creation_ticket' %}">Créer un ticket</a></p>
-
+    <h2>Bonjour {{ request.user.username}}</h2>
     {% for ticket in tickets %}
-        <div>
-            <h2>{{ ticket.title }}</h2>
-            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+        <div style="border: solid 5px red; margin: 10px;">
+            <h2>Titre : {{ ticket.title }}</h2>
+            <h3>Ajouter par : {{ ticket.uploader }}</h3>
+            <p>Description : {{ ticket.description }}</p>
+            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}" style="width: 500px;">
+            
+            {% if request.user == ticket.uploader %} 
+                <p><a href="{%  url 'modify_ticket' ticket.id %}">Modifier</a></p>
+                <p><a href="{%  url 'remove_ticket' ticket.id %}">Supprimer</a></p>
+            {% endif %}
+            
+            <div>
+                {% for review in ticket.review_set.all %}
+                <div style="border: solid;">
+                    <h1>{{ review.headline}}</h1>
+                    <p>{{ review.body}}</p>
+                    <p> Note de {{ review.rating}}</p>
+                    <p>Ecrit par : {{ review.user}}</p>
+                    <p>{{ review.time_created}}</p>
+                    {% if review.user == request.user %}
+                    <p><a href="{% url 'remove_review' review.id %}">Supprimer</a></p>
+                    <p><a href="{% url 'modify_review' review.id %}">Modifier</a></p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if not ticket.has_review %}
+                <p><a href="{% url 'creation_review' ticket.id %}">Ajouter une critique</a></p>
+            {% endif %}
+
         </div>
     {% endfor %}
+
 {% endblock %}

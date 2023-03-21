@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Supprimer ticket {% endblock %}
+
+{% block page %}
+    <h1>Supprimer</h1>
+    <h2>Etes vous sur de supprimer ce ticket ? </h2>
+    <div>
+        <h4>{{ ticket.title }}</h4>
+        <p>{{ ticket.description}}</p>
+        <img src="{{ ticket.image.url }}" alt="{{ticket.title}}" style="width: 500px;">
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" value="Supprimer">
+        <a href="{% url 'home' %}">Annuler</a>
+    </form>
+{% endblock %}

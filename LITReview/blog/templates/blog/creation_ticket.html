@@ -8,6 +8,8 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Créer">
+        <p><a href="{% url 'home' %}">Annuler</a></p>
     </form>
     {{ form.errors }}
+
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Créer un ticket {% endblock %}
+
+{% block page %}
+    <h1>Critique</h1>
+    <div>
+        <h2>{{ ticket.title}}</h2>
+        <p>{{ ticket.description}}</p>
+        <img src="{{ticket.image.url}}" alt="{{ ticket.title}}" style="height: 200px;">
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Créer">
+        <p><a href="{% url 'home' %}">Annuler</a></p>
+    </form>
+    {{ form.errors }}
+
+{% endblock %}

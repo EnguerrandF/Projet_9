@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Supprimer review {% endblock %}
+
+{% block page %}
+    <h1>Supprimer</h1>
+    <h2>Etes vous sur de supprimer cette critique ? </h2>
+    <div>
+        <h4>{{ review.headline }}</h4>
+        <p>{{ review.body}}</p>
+        <p>{{ review.rating}}</p>
+        <p>{{ review.user}}</p>
+        <p>{{ review.time_created}}</p>
+        <img src="{{ ticket.image.url }}" alt="{{ticket.title}}" style="width: 500px;">
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Supprimer">
+        <a href="{% url 'home' %}">Annuler</a>
+    </form>
+{% endblock %}
