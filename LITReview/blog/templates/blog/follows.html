@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} Abonnement {% endblock %}
+
+{% block page %}
+    <section class="block_form_follows">
+        <h1>Abonnement</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.errors%}
+                {% for field_errors in form.errors.values %}
+                    {% for error in field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="Ajouter">
+        </form>
+    </section>
+    <section class="block_subscriber_follows">
+        <h1>Abonnements </h1>
+        {% for subscriber in data_subscriber_follows %}
+            <h2>- {{ subscriber.subscription }} <a href="{% url 'unfollows' subscriber.id%}"><p class="button">Désabonné</p></a></h2>
+        {% endfor %}
+    </section>
+    <section class="block_subscription_follows">
+        <h1>Abonnés</h1>
+        {% for subscription in data_subscription_follows %}
+            <h2>- {{ subscription.subscriber }} </h2>
+        {% endfor %}
+    </section>
+{% endblock %}

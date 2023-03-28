@@ -1,0 +1,61 @@
+.block_form_follows {
+    background-color: $color_two;
+    margin: 50px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    width: 697px;
+    h1 {
+        margin: 20px 0px 0px 30px;
+    }
+    form {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        margin: 30px 30px;
+        align-items: center;
+        justify-content: space-between;
+        input[type=submit] {
+            @extend .button;
+            padding: 14px 40px;
+        }
+        input[type=text] {
+            height: 20px;
+            margin: 0px 0px 0px 15px;
+            border: none;
+           &:focus {
+            outline: none;
+           }
+        }
+    }
+    p {
+        display: flex;
+        flex-direction: row;
+    }
+}
+.block_subscriber_follows, .block_subscription_follows  {
+    background-color: $color_two;
+    margin: 76px 0px 0px 0px;
+    width: 697px;
+    h2 {
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 48px;
+        margin: 9px 20px 16px 24px;
+
+    }
+    h1 {
+        margin: 20px 0px 0px 30px;
+        margin-bottom: 40px;
+    }
+
+}
+.block_subscription_follows {
+    margin-bottom: 300px;
+    width: 697px;
+}
+.errorlist {
+    display: none;
+}

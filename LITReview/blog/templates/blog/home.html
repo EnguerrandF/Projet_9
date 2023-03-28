@@ -1,43 +1,63 @@
 {% extends "base.html" %}
-
+{% load blog_extras %}
 {% block title %} Home {% endblock %}
 
 {% block page %}
-    <h1>Page accueil</h1>
-    <p><a href="{% url 'logout' %}">Se déconnecter </a></p>
-    <p><a href="{% url 'creation_ticket' %}">Créer un ticket</a></p>
-    <h2>Bonjour {{ request.user.username}}</h2>
+    <span class="block_button_creation_ticket">
+        <a href="{% url 'creation_ticket' %}"><p class="button">Créer un ticket</p></a>
+        <a href="{% url 'creation_ticket_critique' %}"><p class="button">Créer une critique</p></a>
+    </span>
+    <h2 class="block_title_h2">Votre flux {{ request.user.username}}</h2>
+
     {% for ticket in tickets %}
-        <div style="border: solid 5px red; margin: 10px;">
-            <h2>Titre : {{ ticket.title }}</h2>
-            <h3>Ajouter par : {{ ticket.uploader }}</h3>
-            <p>Description : {{ ticket.description }}</p>
-            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}" style="width: 500px;">
-            
-            {% if request.user == ticket.uploader %} 
-                <p><a href="{%  url 'modify_ticket' ticket.id %}">Modifier</a></p>
-                <p><a href="{%  url 'remove_ticket' ticket.id %}">Supprimer</a></p>
-            {% endif %}
-            
-            <div>
-                {% for review in ticket.review_set.all %}
-                <div style="border: solid;">
-                    <h1>{{ review.headline}}</h1>
-                    <p>{{ review.body}}</p>
-                    <p> Note de {{ review.rating}}</p>
-                    <p>Ecrit par : {{ review.user}}</p>
-                    <p>{{ review.time_created}}</p>
-                    {% if review.user == request.user %}
-                    <p><a href="{% url 'remove_review' review.id %}">Supprimer</a></p>
-                    <p><a href="{% url 'modify_review' review.id %}">Modifier</a></p>
+        <div class="block_ticket_and_review">
+
+            <section class="display_ticket">
+                <h1 class="display_ticket_margin_text">Ticket de {% get_poster_display ticket.uploader %}</h1>
+                <h2 class="display_ticket_margin_text">{{ ticket.title }}</h2>
+                <span class="display_ticket_description">
+                    <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+                    <span>
+                        <span>
+                            <h2>Description</h2>
+                            <p>{{ ticket.description }}</p>
+                        </span>
+                        <p class="display_ticket_date">{{ ticket.date_created }}</p>
+                    </span>
+                </span>
+                <span class="display_ticket_button">
+                    {% if request.user == ticket.uploader %}
+                            <a href="{%  url 'modify_ticket' ticket.id %}"><p class="button">Modifier</p></a>
+                            <a href="{%  url 'remove_ticket' ticket.id %}"><p class="button">Supprimer</p></a>
                     {% endif %}
+                    {% if not ticket.has_review %}
+                        <a href="{% url 'creation_review' ticket.id %}"><p class="button">Ajouter une critique</p></a>
+                    {% endif %}
+                </span>
+            </section>
+            
+            <section>
+                {% for review in ticket.review_set.all %}
+                <div class="block_review">
+                    <span class="block_review_title">
+                        <h1>Critique de {{ review.user}}</h1>
+                        <p>{% get_stars review.rating %}</p>
+                    </span>
+                    <h2>{{ review.headline}}</h2>
+                    <span class="block_review_description">
+                        <p>{{ review.body}}</p>
+                        <p>{{ review.time_created}}</p>
+                    </span >
+                    <span class="block_review_button">
+                        {% if review.user == request.user %}
+                            <a href="{% url 'remove_review' review.id %}"><p class="button">Supprimer</p></a>
+                            <a href="{% url 'modify_review' review.id %}"><p class="button">Modifier</p></a>
+                        {% endif %}
+                    </span>
                 </div>
                 {% endfor %}
-            </div>
+            </section>
 
-            {% if not ticket.has_review %}
-                <p><a href="{% url 'creation_review' ticket.id %}">Ajouter une critique</a></p>
-            {% endif %}
 
         </div>
     {% endfor %}

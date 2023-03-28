@@ -3,11 +3,15 @@
 {% block title %} Modifier ticket {% endblock %}
 
 {% block page %}
-    <h1>Modifier</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Modifier">
-        <p><a href="{% url 'home' %}">Annuler</a></p>
-    </form>
+    <section class="block_form_ticket">
+        <h1>Modifier</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <span>
+                <input class="button" type="submit" value="Modifier">
+                <a href="{% url 'home' %}"><p class="button">Annuler</p></a>
+            </span>
+        </form>
+    </section>
 {% endblock %}

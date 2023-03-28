@@ -1,12 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'blog/image/logoLITReview.png' %}" />
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+    <header>
+        <img src="{% static 'blog/image/logoLITReview.png' %}" alt="logoLITReview">
+        <!-- <h1>LITReview</h1> -->
+        {% if user.is_authenticated %}
+            <ul>
+                <li><a href="{% url 'home' %}"><p>Flux</p></a></li>
+                <li><a href="{% url 'post' %}"><p>Posts</p></a></li>
+                <li><a href="{% url 'follows' %}"><p>Abonnement</p></a></li>
+                <li><a href="{% url 'logout' %}"><p>Se déconnecter</p></a></li>
+            </ul>
+        {% else %}
+            <ul>
+                <li><a href="{% url 'login' %}"><p>Login</p></a></li>
+                <li><a href="{% url 'signup' %}"><p>Créer un compte</p></a></li>
+            </ul>
+        {% endif %}
+    </header>
     {% block page %} {% endblock %}
 </body>
 </html>

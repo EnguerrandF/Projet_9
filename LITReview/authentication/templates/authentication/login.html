@@ -3,12 +3,21 @@
 {% block title %} Login {% endblock %}
 
 {% block page %}
-    <h1>Connexion</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Se connecter">
-    </form>
-    <p> {{ message }} </p>
-    <p><a href="{% url 'signup' %}">Créer un compte </a></p>
+<p>mot de passe : sdfVBFfg45g!4 </p>
+    <main class="block_login">
+        <h1>Connexion</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if message != '' %}
+            <p> {{ message }} </p>
+            {% endif %}
+            <span>
+                <input type="submit" value="Se connecter">
+            </span>
+        </form>
+    </main>
+    <span class="button_create_account">
+        <a href="{% url 'signup' %}"><p class="button">Créer un compte </p></a>
+    </span>
 {% endblock %}

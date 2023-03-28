@@ -18,21 +18,25 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from blog.views import home_page, creation_ticket, modify_ticket, remove_ticket, creation_review, modify_review, remove_review
+from blog import views
 from authentication.views import signup_page, logout_page, LoginPage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LoginPage.as_view(), name='login'),
-    path('home/', home_page, name='home'),
+    path('home/', views.home_page, name='home'),
     path('signup/', signup_page, name='signup'),
     path('logout/', logout_page, name='logout'),
-    path('home/ticket/creation', creation_ticket, name='creation_ticket'),
-    path('home/ticket/<int:id>/modify', modify_ticket, name='modify_ticket'),
-    path('home/ticket/<int:id>/delete', remove_ticket, name='remove_ticket'),
-    path('home/critique/<int:id>/creation', creation_review, name='creation_review'),
-    path('home/critique/<int:id>/modify', modify_review, name='modify_review'),
-    path('home/critique/<int:id>/remove', remove_review, name='remove_review'),
+    path('home/ticket/creation/', views.creation_ticket, name='creation_ticket'),
+    path('home/ticket/<int:id>/modify/', views.modify_ticket, name='modify_ticket'),
+    path('home/ticket/<int:id>/delete/', views.remove_ticket, name='remove_ticket'),
+    path('home/critique/<int:id>/creation/', views.creation_review, name='creation_review'),
+    path('home/critique/<int:id>/modify/', views.modify_review, name='modify_review'),
+    path('home/critique/<int:id>/remove/', views.remove_review, name='remove_review'),
+    path('home/ticket_critique/creation/', views.creation_ticket_critique, name='creation_ticket_critique'),
+    path('follows/', views.follows, name='follows'),
+    path('follows/<int:id>/unfollows', views.unfollows, name='unfollows'),
+    path('post/', views.post, name='post'),
 ]
 
 if settings.DEBUG:

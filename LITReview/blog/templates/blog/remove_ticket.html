@@ -1,18 +1,32 @@
 {% extends "base.html" %}
-
+{% load blog_extras %}
 {% block title %} Supprimer ticket {% endblock %}
 
 {% block page %}
-    <h1>Supprimer</h1>
-    <h2>Etes vous sur de supprimer ce ticket ? </h2>
-    <div>
-        <h4>{{ ticket.title }}</h4>
-        <p>{{ ticket.description}}</p>
-        <img src="{{ ticket.image.url }}" alt="{{ticket.title}}" style="width: 500px;">
-    </div>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="submit" value="Supprimer">
-        <a href="{% url 'home' %}">Annuler</a>
-    </form>
+<section class="block_remove_ticket">
+    <h1 class="block_remove_ticket_title">Supprimer</h1>
+    <h2 class="block_remove_ticket_title">Etes vous sur de supprimer ce ticket ? </h2>
+    <section class="display_ticket display_ticket-modifier">
+        <h1 class="display_ticket_margin_text">Ticket de {% get_poster_display ticket.uploader %}</h1>
+        <h2 class="display_ticket_margin_text">{{ ticket.title }}</h2>
+        <span class="display_ticket_description">
+            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+            <span>
+                <span>
+                    <h2>Description</h2>
+                    <p>{{ ticket.description }}</p>
+                </span>
+                <p class="display_ticket_date">{{ ticket.date_created }}</p>
+            </span>
+        </span>
+    </section>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span>
+                <input class="button" type="submit" value="Supprimer">
+                <a href="{% url 'home' %}"><p class="button">Annuler</p></a>
+            </span>
+        </form>
+    </section>
 {% endblock %}

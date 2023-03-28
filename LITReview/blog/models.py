@@ -8,7 +8,8 @@ class Ticket(models.Model):
     description = models.CharField(max_length=10000, blank=True)
     image = models.ImageField(upload_to='image_ticket/')
     date_created = models.DateTimeField(auto_now_add=True)
-    uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    uploader = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 on_delete=models.CASCADE)
 
 
 class Review(models.Model):
@@ -33,10 +34,11 @@ class Review(models.Model):
 
 
 class UserFollows(models.Model):
-    # Your UserFollows model definition goes here
+    subscriber = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    subscription = models.CharField(max_length=128, blank=False, null=True)
+    start_date = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
-        # ensures we don't get multiple UserFollows instances
-        # for unique user-user_followed pairs
-        # unique_together = ('user', 'followed_user', )
-        pass
+        unique_together = ('subscriber', 'subscription')
+

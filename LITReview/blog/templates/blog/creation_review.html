@@ -1,20 +1,34 @@
 {% extends "base.html" %}
-
-{% block title %} Créer un ticket {% endblock %}
+{% load blog_extras %}
+{% block title %} Créer une Critique {% endblock %}
 
 {% block page %}
-    <h1>Critique</h1>
-    <div>
-        <h2>{{ ticket.title}}</h2>
-        <p>{{ ticket.description}}</p>
-        <img src="{{ticket.image.url}}" alt="{{ ticket.title}}" style="height: 200px;">
-    </div>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Créer">
-        <p><a href="{% url 'home' %}">Annuler</a></p>
-    </form>
-    {{ form.errors }}
+
+    <section class="block_creation_review">
+        <h1>Créer une critique</h1>
+        <section class="display_ticket block_creation_review-modifier">
+            <h1 class="display_ticket_margin_text">Ticket de {% get_poster_display ticket.uploader %}</h1>
+            <h2 class="display_ticket_margin_text">{{ ticket.title }}</h2>
+            <span class="display_ticket_description">
+                <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+                <span>
+                    <span>
+                        <h2>Description</h2>
+                        <p>{{ ticket.description }}</p>
+                    </span>
+                    <p class="display_ticket_date">{{ ticket.date_created }}</p>
+                </span>
+            </span>
+        </section>
+
+        <form class="block_form_creation_review block_form_creation_review-modifier" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <span>
+                <input class="button" type="submit" value="Créer">
+                <a href="{% url 'home' %}"><p class="button">Annuler</p></a>
+            </span>
+        </form>
+    </section>
 
 {% endblock %}

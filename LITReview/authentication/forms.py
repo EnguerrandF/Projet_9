@@ -19,12 +19,9 @@ class SignupForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+        fields = ("username", "password1", "password2")
         labels = {
             'username': 'Identifiant',
-            'first_name': "Nom",
-            'last_name': 'Prénon',
-            'email': 'Adresse Mail',
         }
         help_texts = {
             'username': 'Utilisé pour se connecter',

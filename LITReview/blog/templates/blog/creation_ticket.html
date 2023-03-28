@@ -3,13 +3,16 @@
 {% block title %} Créer un ticket {% endblock %}
 
 {% block page %}
-    <h1>Nouveau ticket</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Créer">
-        <p><a href="{% url 'home' %}">Annuler</a></p>
-    </form>
-    {{ form.errors }}
+    <section class="block_form_ticket">
+        <h1>Nouveau ticket</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <span>
+                <input class="button" type="submit" value="Créer">
+                <a href="{% url 'home' %}"><p class="button">Annuler</p></a>
+            </span>
+        </form>
+    </section>
 
 {% endblock %}

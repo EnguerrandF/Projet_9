@@ -1,21 +1,31 @@
 {% extends "base.html" %}
-
+{% load blog_extras %}
 {% block title %} Supprimer review {% endblock %}
 
 {% block page %}
-    <h1>Supprimer</h1>
-    <h2>Etes vous sur de supprimer cette critique ? </h2>
-    <div>
-        <h4>{{ review.headline }}</h4>
-        <p>{{ review.body}}</p>
-        <p>{{ review.rating}}</p>
-        <p>{{ review.user}}</p>
-        <p>{{ review.time_created}}</p>
-        <img src="{{ ticket.image.url }}" alt="{{ticket.title}}" style="width: 500px;">
-    </div>
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Supprimer">
-        <a href="{% url 'home' %}">Annuler</a>
-    </form>
+    <span class="title_remove_review">
+        <h1>Supprimer la critique</h1>
+        <h2>Etes vous sur de supprimer cette critique ? </h2>
+    </span>
+    <section>
+        <div class="block_review block_review-modifier">
+            <span class="block_review_title">
+                <h1>Critique de {{ reviews.user}}</h1>
+                <p>{% get_stars reviews.rating %}</p>
+            </span>
+            <h2>{{ reviews.headline }}</h2>
+            <p>{{ reviews.body}}</p>
+            <span class="block_review_description">
+                <p>{{ review.body}}</p>
+                <p>{{ review.time_created}}</p>
+            </span >
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <span class="block_review_button block_review_button-modifier">
+                <input class="button" type="submit" value="Supprimer">
+                <a href="{% url 'home' %}"><p class="button">Annuler</p></a>
+            </span>
+        </form>
+    </section>
 {% endblock %}

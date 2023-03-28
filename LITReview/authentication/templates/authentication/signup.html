@@ -3,12 +3,19 @@
 {% block title %} Créer un compte {% endblock %}
 
 {% block page %}
-    <h1>Créer un compte</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Créer">
-    </form>
-    <p><a href="{% url 'login' %}">login</a></p>
+<p>mot de passe : sdfVBFfg45g!4 </p>
+    <main class="block_login">
+        <h1>Créer un compte</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <span>
+                <input type="submit" value="Créer un compte">
+            </span>
+        </form>
+    </main>
+    <span class="button_create_account">
+        <a href="{% url 'login' %}"><p class="button">login </p></a>
+    </span>
 {% endblock %}
 <!-- mot de passe user : 5s4fSDSF!:sfsSD -->

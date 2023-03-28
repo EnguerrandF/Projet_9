@@ -1,0 +1,29 @@
+.block_login {
+    background-color: $color_two;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 80px;
+    padding: 35px 180px;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+        align-items: flex-start;
+        input[type=submit]{
+            @extend .button;
+        }
+        input[type=text]{
+            width: 183px;
+        }
+        span {
+            margin-top: 20px;
+            width: 100%;
+            text-align: end;
+        }
+    }
+}
+.button_create_account {
+    margin-top: 30px;
+}

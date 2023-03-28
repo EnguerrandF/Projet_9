@@ -1,0 +1,26 @@
+.block_button_creation_ticket {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    margin: 50px 0px 0px 0px;
+}
+.block_title_h2 {
+    width: 770px;
+    margin: 60px 0px 0px 0px;
+}
+.block_ticket_and_review {
+    background-color: $color_two;
+    margin: 40px 0px;
+    width: 923px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title_remove_review {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 880px;
+    margin-top: 50px;
+}

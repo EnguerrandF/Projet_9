@@ -1,0 +1,95 @@
+.display_ticket {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 50px;
+    background-color: $color_two;
+    width: 736px;
+    &_margin_text{
+        margin: 0px 0px 30px 0px;
+    }
+    &_description {
+        margin: 18px 0px 0px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 30px;
+        flex-wrap: wrap;
+        img {
+            height: 450px;
+            width:  312px;
+            object-fit: cover;
+        }
+        span {
+            width: 363px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+        }
+    }
+    &-modifier {
+        margin: 0;
+        padding: 30px;
+    }
+    &_date {
+        text-align: end;
+        padding: 0 20px;
+    }
+    &_button {
+        display: flex;
+        gap: 20px;
+        margin: 40px 0px 0px 0px;
+    }
+}
+.block_form_ticket {
+    background-color: $color_two;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 85px;
+    padding: 42px 93px;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        textarea {
+            height: 220px;
+            width: 640px;
+        }
+        p {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            a {
+                font-family: "KaiseiHarunoUmi-regular";
+                font-size: 15px;
+                color: $color_text;
+                text-decoration: underline;
+            }
+        }
+        input[type=file] {
+            display: flex;
+            &::file-selector-button {
+                @extend .button;
+            }
+        }
+        span {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+    }
+}
+.block_remove_ticket {
+    &_title {
+        margin: 50px 0px;
+    }
+    form {
+        span {
+            margin: 20px 0px 50px 0px;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+    }
+}
