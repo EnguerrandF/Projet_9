@@ -78,6 +78,30 @@
             gap: 15px;
             margin-top: 10px;
         }
+
+        tr {
+            label, td {
+                font-family: "KaiseiHarunoUmi-regular";
+                font-size: 15px;
+                text-decoration: none;
+                color: $color_text;
+            }
+        }
+        tr:nth-child(3){
+            td {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                margin: 15px 15px;
+                a {
+                    text-decoration: underline;
+                    font-family: "KaiseiHarunoUmi-regular";
+                    font-size: 15px;
+                    color: $color_text;
+    
+                }
+            }
+        }
     }
 }
 .block_remove_ticket {

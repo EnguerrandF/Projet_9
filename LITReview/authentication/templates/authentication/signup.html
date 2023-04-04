@@ -9,6 +9,15 @@
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
+            <span class="block_login_errors">
+                {% if form.errors%}
+                    {% for field_errors in form.errors.values %}
+                        {% for error in field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </span>
             <span>
                 <input type="submit" value="Créer un compte">
             </span>
@@ -18,4 +27,3 @@
         <a href="{% url 'login' %}"><p class="button">login </p></a>
     </span>
 {% endblock %}
-<!-- mot de passe user : 5s4fSDSF!:sfsSD -->

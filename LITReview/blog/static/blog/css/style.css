@@ -172,6 +172,11 @@ header ul p:hover {
   width: 100%;
   text-align: end;
 }
+.block_login_errors p {
+  font-size: 13px;
+  color: #FF661F;
+  text-align: justify;
+}
 
 .button_create_account {
   margin-top: 30px;
@@ -348,6 +353,24 @@ header ul p:hover {
   display: flex;
   gap: 15px;
   margin-top: 10px;
+}
+.block_form_ticket form tr label, .block_form_ticket form tr td {
+  font-family: "KaiseiHarunoUmi-regular";
+  font-size: 15px;
+  text-decoration: none;
+  color: #EAECE9;
+}
+.block_form_ticket form tr:nth-child(3) td {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 15px 15px;
+}
+.block_form_ticket form tr:nth-child(3) td a {
+  text-decoration: underline;
+  font-family: "KaiseiHarunoUmi-regular";
+  font-size: 15px;
+  color: #EAECE9;
 }
 
 .block_remove_ticket_title {

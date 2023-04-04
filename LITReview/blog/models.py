@@ -4,9 +4,9 @@ from django.conf import settings
 
 
 class Ticket(models.Model):
-    title = models.CharField(max_length=128)
-    description = models.CharField(max_length=10000, blank=True)
-    image = models.ImageField(upload_to='image_ticket/')
+    title = models.CharField(max_length=128, blank=False)
+    description = models.CharField(max_length=10000, blank=False)
+    image = models.ImageField(upload_to='image_ticket/', blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  on_delete=models.CASCADE)
@@ -27,7 +27,7 @@ class Review(models.Model):
         choices=RATING_SELECT,
         validators=[MinValueValidator(0), MaxValueValidator(5)])
     headline = models.CharField(max_length=128)
-    body = models.CharField(max_length=8192, blank=True)
+    body = models.CharField(max_length=8192, blank=False)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)

@@ -10,7 +10,9 @@
         <h1 class="display_ticket_margin_text">Ticket de {% get_poster_display ticket.uploader %}</h1>
         <h2 class="display_ticket_margin_text">{{ ticket.title }}</h2>
         <span class="display_ticket_description">
-            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+            {% if ticket.image %}
+                <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+            {% endif %}
             <span>
                 <span>
                     <h2>Description</h2>

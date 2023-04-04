@@ -7,7 +7,9 @@
         <h1>Modifier</h1>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            <table>
+                {{ form.as_table }}
+            </table>
             <span>
                 <input class="button" type="submit" value="Modifier">
                 <a href="{% url 'home' %}"><p class="button">Annuler</p></a>

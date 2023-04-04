@@ -51,7 +51,7 @@ def modify_ticket(request, id):
         if request.method == 'POST':
             form = CreationTicketForm(request.POST, request.FILES, instance=ticket)
             if form.is_valid():
-                if 'image' in request.FILES:
+                if 'image' in request.FILES and image_after != "":
                     default_storage.delete(image_after)
                 photo = form.save(commit=False)
                 photo.uploader = request.user
@@ -74,7 +74,8 @@ def remove_ticket(request, id):
     ticket = Ticket.objects.get(id=id)
     if request.user == ticket.uploader:
         if request.method == 'POST':
-            if default_storage.exists(ticket.image.name):
+            print("OOOOOOOOOOOOOOOOOOOOO", ticket.image.name)
+            if ticket.image.name != "" and default_storage.exists(ticket.image.name):
                 default_storage.delete(ticket.image.name)
             ticket.delete()
             return redirect('post')
@@ -203,7 +204,7 @@ def creation_ticket_critique(request):
 def post(request):
     tickets = (Ticket.objects
                .filter(uploader=request.user)
-               .order_by('date_created')
+               .order_by('-date_created')
                .prefetch_related('review_set').all())
 
     for ticket in tickets:

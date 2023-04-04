@@ -23,6 +23,13 @@
             text-align: end;
         }
     }
+    &_errors {
+        p {
+            font-size: 13px;
+            color: $color_button;
+            text-align: justify;
+        }
+    }
 }
 .button_create_account {
     margin-top: 30px;

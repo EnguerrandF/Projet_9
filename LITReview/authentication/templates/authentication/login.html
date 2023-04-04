@@ -10,7 +10,9 @@
             {% csrf_token %}
             {{ form.as_p }}
             {% if message != '' %}
-            <p> {{ message }} </p>
+            <span class="block_login_errors">
+                <p> {{ message }} </p>
+            </span>
             {% endif %}
             <span>
                 <input type="submit" value="Se connecter">
