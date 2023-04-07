@@ -19,7 +19,7 @@ def get_stars(context):
     elif context == 2:
         return '★★☆☆☆'
     elif context == 3:
-        return '★★☆☆'
+        return '★★★☆☆'
     elif context == 4:
         return '★★★★☆'
     elif context == 5:

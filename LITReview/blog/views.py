@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
+from django.db.models import Prefetch
 
 from blog.forms import CreationTicketForm, CreationReviewForm, UserFollowsForm
 from blog.models import Ticket, Review, UserFollows
@@ -11,9 +12,8 @@ def home_page(request):
     subcriber = list(UserFollows.objects.filter(subscriber=request.user).values_list('subscription', flat=True))
     subcriber.append(request.user)
     tickets = (Ticket.objects
-               .filter(uploader__username__in=subcriber)
-               .order_by('-date_created')
-               .prefetch_related('review_set').all())
+               .filter(uploader__username__in=subcriber).order_by('-date_created')
+               .prefetch_related(Prefetch('review_set', queryset=Review.objects.order_by('time_created'))).all())
     for ticket in tickets:
         if not ticket.review_set.filter(user=request.user).exists():
             ticket.has_review = False
